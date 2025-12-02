@@ -1,0 +1,20 @@
+[package]
+name = "coverage"
+version = "0.1.0"
+edition = "2024"
+description = "Tiny opinionated Rust test coverage linter."
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/ericfindlay/coverage"
+keywords = ["testing", "linter", "coverage"]
+categories = ["development-tools"]
+
+
+[[bin]]
+name = "coverage"
+path = "src/main.rs"
+
+[dependencies]
+colored = "3.0.0"
+debug_err = { path = "../debug_err" }
+proc-macro2 = { version = "1.0.103", features = [ "span-locations" ] }
+syn = { version = "2.0.109", features = [ "full", "visit" ] }
