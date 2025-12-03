@@ -8,7 +8,6 @@ repository = "https://github.com/ericfindlay/coverage"
 keywords = ["testing", "linter", "coverage"]
 categories = ["development-tools"]
 
-
 [[bin]]
 name = "coverage"
 path = "src/main.rs"
