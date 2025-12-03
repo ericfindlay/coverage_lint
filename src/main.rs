@@ -1,4 +1,2 @@
-use coverage::run;
-    
 // test:
-pub fn main() { run() }
+pub fn main() { coverage_lint::run() }
