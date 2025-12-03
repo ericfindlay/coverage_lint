@@ -2,9 +2,9 @@
 name = "coverage_lint"
 version = "0.1.1"
 edition = "2024"
-description = "Tiny opinionated Rust test coverage linter."
+description = "A no-config Rust test coverage linter."
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/ericfindlay/coverage"
+repository = "https://github.com/ericfindlay/coverage_lint"
 keywords = ["testing", "linter", "coverage"]
 categories = ["development-tools"]
 
