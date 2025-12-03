@@ -89,7 +89,7 @@ use {
         path::{Path, PathBuf},
         process::exit,
     },
-    syn::{File, ImplItemFn, Item, ItemFn, parse_str, spanned::Spanned, visit::Visit},
+    syn::{File, ImplItemFn, Item, ItemFn, visit::Visit},
 };
     
 type Result<T> = std::result::Result<T, DebugErr>;
@@ -402,7 +402,7 @@ impl Group {
         // Step back line by line until line parsing fails and then break.
         
         // current_line is 1-based.
-        let mut current_line = fn_line_number - 1;
+        // let current_line = fn_line_number - 1;
         for current_line in (1..fn_line_number).rev() {
 
             // Parse the line to get an AnnotationBuilder.
@@ -948,6 +948,7 @@ fn source_files() -> Result<Vec<PathBuf>> {
 pub mod test {
 
     use crate::*;
+    use syn::parse_str;
 
     #[test]
     fn visitor_should_parse_functions() {
@@ -1046,18 +1047,18 @@ pub mod test {
                      fn test_fn() {}"#;
         let file: File = parse_str(src).unwrap();
         let item_fn = match &file.items[0] { Item::Fn(f) => f, _ => panic!() };
-        assert!(item_fn_is_test(item_fn));
+        assert!(item_fn_is_test(&item_fn));
 
         let src = r#"#[tokio::test]
                    fn tokio_fn() {}"#;
         let file: File = parse_str(src).unwrap();
         let item_fn = match &file.items[0] { Item::Fn(f) => f, _ => panic!() };
-        assert!(item_fn_is_test(item_fn));
+        assert!(item_fn_is_test(&item_fn));
 
         let src = "fn normal_fn() {}";
         let file: File = parse_str(src).unwrap();
         let item_fn = match &file.items[0] { Item::Fn(f) => f, _ => panic!() };
-        assert!(!item_fn_is_test(item_fn));
+        assert!(!item_fn_is_test(&item_fn));
     }
 
     #[test]
@@ -1216,7 +1217,6 @@ pub mod test {
                      // test: nested_test
                      fn func() {}"#;
         let visitor = Visitor::parse(src).unwrap();
-        let groups = visitor.groups(src).unwrap();
         let tests: Tests = visitor.unchecked_tests_ref().try_into().unwrap();
         assert!(tests.0.get("nested_test").is_some());
         assert!(tests.0.get("non_nested_test").is_some());
