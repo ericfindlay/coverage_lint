@@ -1,5 +1,5 @@
 /*!
-A tiny, zero-config, opinionated Rust test-coverage linter.
+A zero-config Rust test-coverage linter.
 
 **What it does**
 - Complains loudly about missing annotations, missing tests, orphaned tests, or invalid names.
@@ -73,9 +73,7 @@ tool. Every category of warning can be distinguished by one of the following:
 [mw] Multi-word test name.
 [ig] Invalid annotation group.
 ```
-
 */
-
 
 use {
     colored::Colorize,
